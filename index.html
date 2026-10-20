@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Interview Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Cairo:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--ink:#1f2a44;--mut:#65708c;--card:#f5f9ff;--line:#e1e8f5;--sun:#ffc93c;--sky:#3da5f4;--coral:#ff6b6b;--mint:#2fc79a;--grape:#8e6cef;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10162a;--ink:#f2f5ff;--mut:#a3aecb;--card:#1a2340;--line:#2b3658;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10162a;--ink:#f2f5ff;--mut:#a3aecb;--card:#1a2340;--line:#2b3658;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Baloo 2','Trebuchet MS',system-ui,sans-serif;font-weight:500;line-height:1.35}
+.ar{font-family:'Cairo','Segoe UI',Tahoma,sans-serif;direction:rtl}
+.wrap{max-width:720px;margin:0 auto;padding:14px 16px 90px}
+header{display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}
+h1{font-size:26px;margin:0;font-weight:800;letter-spacing:-.3px}
+.stars{background:var(--sun);color:#3b2c00;font-weight:800;border-radius:99px;padding:4px 14px;font-size:18px}
+.stars.pop{animation:pop .5s}
+.who{display:flex;align-items:center;gap:8px;margin:10px 0 4px;color:var(--mut);font-size:15px}
+.who input{font:inherit;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:12px;padding:6px 10px;width:150px}
+.who input:focus-visible,button:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+nav{display:flex;gap:8px;margin:12px 0;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding:6px 0;z-index:5}
+nav button{flex:1;font:inherit;font-weight:700;font-size:16px;padding:10px 6px;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:16px;cursor:pointer;transition:transform .15s,background .2s}
+nav button:active{transform:scale(.95)}
+nav button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.bar{height:10px;background:var(--line);border-radius:9px;overflow:hidden;margin:6px 0 14px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--sky),var(--mint));width:0;transition:width .5s}
+.card{background:var(--card);border:2px solid var(--line);border-radius:28px;padding:22px 18px;text-align:center;position:relative;overflow:hidden}
+.card.in{animation:slide .35s ease-out}
+.big{font-size:84px;line-height:1.1;display:inline-block;animation:bob 2.2s ease-in-out infinite}
+.q{font-size:26px;font-weight:800;margin:6px 0 2px}
+.qa{font-size:22px;color:var(--mut);margin:0 0 12px}
+.ans{margin-top:12px;padding:12px;border-radius:18px;background:var(--bg);border:2px dashed var(--mint);animation:pop .4s}
+.ans b{display:block;font-size:20px}
+.row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+.btn{font:inherit;font-weight:800;font-size:17px;border:0;border-radius:16px;padding:10px 16px;cursor:pointer;color:#fff;box-shadow:0 4px 0 rgba(0,0,0,.18);transition:transform .1s,box-shadow .1s}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.18)}
+.sky{background:var(--sky)}.mint{background:var(--mint)}.grape{background:var(--grape)}.coral{background:var(--coral)}.ghost{background:var(--line);color:var(--ink);box-shadow:none}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 10px}
+.chip{flex:none;font:inherit;font-weight:700;padding:6px 14px;border-radius:99px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.chip.on{background:var(--grape);border-color:var(--grape);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.w{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:14px 8px;text-align:center;cursor:pointer;font:inherit;color:var(--ink);transition:transform .15s}
+.w:active{transform:scale(.94)}
+.w .e{font-size:50px;height:62px;display:flex;align-items:center;justify-content:center}
+.w .n{font-weight:800;font-size:18px}
+.w .a{font-size:16px;color:var(--mut)}
+.w.wig .e>*{animation:wig .6s}
+.dot{display:inline-block;width:46px;height:46px;border-radius:50%;border:2px solid rgba(0,0,0,.12)}
+.shp{display:inline-block;width:48px;height:48px;background:var(--coral)}
+.opts{display:grid;gap:10px;margin-top:14px}
+.opt{font:inherit;font-weight:800;font-size:22px;padding:12px;border-radius:18px;border:2px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.opt.ok{background:var(--mint);color:#fff;border-color:var(--mint);animation:pop .4s}
+.opt.no{background:var(--coral);color:#fff;border-color:var(--coral);animation:shake .4s}
+.hint{color:var(--mut);font-size:15px;text-align:center;margin-top:12px}
+.fx{position:fixed;pointer-events:none;font-size:26px;z-index:20;animation:fly .9s ease-out forwards}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-10px) rotate(3deg)}}
+@keyframes pop{0%{transform:scale(.8);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+@keyframes slide{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
+@keyframes wig{0%,100%{transform:rotate(0)}20%{transform:rotate(-18deg) scale(1.2)}50%{transform:rotate(16deg) scale(1.2)}80%{transform:rotate(-8deg)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+@keyframes fly{to{transform:translate(var(--dx),var(--dy)) rotate(260deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head>
+<body><div class="wrap">
+<header><h1>Let’s practice! 🌟</h1><div class="stars" id="stars">⭐ 0</div></header>
+<div class="who"><label for="nm">Child’s name:</label><input id="nm" maxlength="20" placeholder="type name"></div>
+<nav id="nav"></nav>
+<main id="main"></main>
+</div>
+<script>
+var Q=[
+["👋","How are you?","إزيك؟","I’m fine, thank you.","الحمد لله، شكرًا."],
+["🏷️","What’s your name?","اسمك إيه؟","My name is {n}.","اسمي {n}."],
+["🎂","How old are you?","سنك كام؟","I’m ___ years old.","سني ___ سنين."],
+["👨‍👩‍👦","What are your father’s and mother’s names?","اسم بابا وماما إيه؟","My father is ___ and my mother is ___.","بابا اسمه ___ وماما اسمها ___."],
+["👫","How many brothers or sisters do you have?","عندك كام أخ أو أخت؟","I have ___. Their name is ___.","عندي ___. اسمهم ___."],
+["🏠","Where do you live?","ساكن فين؟","I live in ___.","ساكن في ___."],
+["🏫","What’s your nursery name?","اسم الحضانة إيه؟","___ Nursery.","حضانة ___."],
+["🤝","Who’s your best friend?","مين صاحبك المقرب؟","My best friend is ___.","صاحبي المقرب ___."],
+["🍕","What’s your favorite food?","أكلتك المفضلة إيه؟","I like ___.","بحب ___."],
+["🎨","What’s your favorite color?","لونك المفضل إيه؟","My favorite color is ___.","لوني المفضل ___."],
+["👩‍🏫","Who’s your favorite teacher?","مدرستك المفضلة مين؟","My favorite teacher is Miss ___.","مدرستي المفضلة Miss ___."],
+["👕","What are you wearing?","لابس إيه؟","I’m wearing a t-shirt and shoes.","لابس تيشيرت وجزمة."],
+["🐶","Do you have a pet?","عندك حيوان أليف؟","Yes, I have a ___. / No, I don’t.","أيوه عندي ___. / لأ معنديش."],
+["👀","How many eyes, ears and arms do you have?","عندك كام عين وودن وإيد؟","Two eyes, two ears, two arms.","عينين وودنين وإيدين."],
+["👃","How many noses and mouths do you have?","عندك كام مناخير وكام بق؟","One nose and one mouth.","أنف واحد وبق واحد."],
+["🖐️","How many fingers in one hand?","كام صباع في الإيد الواحدة؟","Five.","خمسة."],
+["🪑","What do you see in this room?","شايف إيه في الأوضة دي؟","I see a table, chairs, a board and toys.","شايف ترابيزة وكراسي وسبورة ولعب."],
+["💼","Does your mommy work? What does your father do?","ماما بتشتغل؟ بابا بيشتغل إيه؟","My mommy is ___. My father works as ___.","ماما ___. بابا بيشتغل ___."],
+["👉","Point to your nose!","أشّر على مناخيرك!","(Point to it.)","(يشاور عليها.)"],
+["🧒","Are you a boy or a girl?","إنت ولد ولا بنت؟","I’m a boy.","أنا ولد."],
+["🎽","What color is your t-shirt?","التيشيرت بتاعك لونه إيه؟","It’s ___.","لونه ___."]
+];
+function dot(c){return '<i class="dot" style="background:'+c+'"></i>'}
+function sh(s){return '<i class="shp" style="'+s+'"></i>'}
+var W={
+"Colors":[[dot('#e53935'),"red","أحمر"],[dot('#1e88e5'),"blue","أزرق"],[dot('#fdd835'),"yellow","أصفر"],[dot('#43a047'),"green","أخضر"],[dot('#fb8c00'),"orange","برتقالي"],[dot('#f48fb1'),"pink","وردي"],[dot('#8e24aa'),"purple","بنفسجي"],[dot('#212121'),"black","أسود"],[dot('#ffffff'),"white","أبيض"],[dot('#795548'),"brown","بني"]],
+"Shapes":[[sh('border-radius:50%'),"circle","دايرة"],[sh(''),"square","مربع"],[sh('clip-path:polygon(50% 0,100% 100%,0 100%)'),"triangle","مثلث"],[sh('width:68px;height:40px'),"rectangle","مستطيل"],[sh('background:var(--sun);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)'),"star","نجمة"],["❤️","heart","قلب"]],
+"Fruits":[["🍎","apple","تفاح"],["🍌","banana","موز"],["🍊","orange","برتقال"],["🍇","grapes","عنب"],["🍓","strawberry","فراولة"],["🍉","watermelon","بطيخ"],["🥭","mango","مانجو"]],
+"Vegetables":[["🍅","tomato","طماطم"],["🥒","cucumber","خيار"],["🥕","carrot","جزر"],["🥔","potato","بطاطس"],["🧅","onion","بصل"],["🥬","lettuce","خس"]],
+"Farm animals":[["🐄","cow","بقرة"],["🐑","sheep","خروف"],["🐐","goat","ماعز"],["🫏","donkey","حمار"],["🐴","horse","حصان"]],
+"Wild animals":[["🦁","lion","أسد"],["🐯","tiger","نمر"],["🦒","giraffe","زرافة"],["🦛","hippo","فرس نهر"],["🐒","monkey","قرد"],["🐘","elephant","فيل"],["🦓","zebra","حمار وحشي"],["🐼","panda","باندا"],["🦊","fox","ثعلب"]],
+"Pets":[["🐱","cat","قطة"],["🐶","dog","كلب"],["🐦","bird","عصفورة"],["🐟","fish","سمكة"],["🐰","rabbit","أرنب"],["🐭","mouse","فأر"],["🦋","butterfly","فراشة"]],
+"Transport":[["🚗","car","عربية"],["🚌","bus","أتوبيس"],["🚆","train","قطر"],["✈️","plane","طيارة"],["🚢","ship","مركب"],["🚲","bicycle","عجلة"],["🏍️","motorcycle","موتوسيكل"]],
+"Jobs":[["👨‍⚕️","doctor","دكتور"],["👩‍🏫","teacher","مدرس"],["👮","police officer","شرطي"],["🧑‍🌾","farmer","فلاح"],["🚖","driver","سواق"],["👨‍🍳","chef","طباخ"],["👷","engineer","مهندس"],["👩‍⚕️","nurse","ممرضة"]],
+"Opposites":[["🐘🐭","big / small","كبير / صغير"],["🦒🐭","tall / short","طويل / قصير"],["🔥🧊","hot / cold","سخن / بارد"],["⬆️⬇️","up / down","فوق / تحت"],["😀😢","happy / sad","سعيد / حزين"],["🐇🐢","fast / slow","سريع / بطيء"]],
+"Actions":[["🤸","Jump!","اِنطّ"],["🧍","Stand up!","قف"],["🪑","Sit down!","اقعد"],["🤝","Shake your hand!","سلّم بإيدك"],["🍽️","Eat!","كُل"],["🥤","Drink!","اشرب"],["😴","Sleep!","نام"],["🏊","Swim!","اعوم"],["👏","Clap your hands!","صقّف"],["🙋","Hand up!","ارفع إيدك"],["🧼","Wash your face!","اغسل وشك"],["🫧","Wash your hands!","اغسل إيدك"],["👟","Take off your shoes!","اقلع الجزمة"]]
+};
+var S={tab:0,qi:0,show:0,cat:"Colors",stars:0,name:"",g:null};
+try{S.stars=+localStorage.getItem('ip_stars')||0;S.name=localStorage.getItem('ip_name')||''}catch(e){}
+var $=function(i){return document.getElementById(i)};
+function say(t){try{var u=new SpeechSynthesisUtterance(t.replace(/[\/!]/g,' '));u.lang='en-US';u.rate=.8;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+function fx(x,y,set){set=set||['⭐','✨','🎉','🌟'];for(var i=0;i<14;i++){var s=document.createElement('span');s.className='fx';s.textContent=set[i%set.length];s.style.left=x+'px';s.style.top=y+'px';s.style.setProperty('--dx',(Math.random()*240-120)+'px');s.style.setProperty('--dy',(-60-Math.random()*160)+'px');document.body.appendChild(s);setTimeout(function(n){n.remove()},950,s)}}
+function win(ev){S.stars++;try{localStorage.setItem('ip_stars',S.stars)}catch(e){}var el=$('stars');el.textContent='⭐ '+S.stars;el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');var r=ev&&ev.target?ev.target.getBoundingClientRect():{left:innerWidth/2,top:innerHeight/2,width:0};fx(r.left+r.width/2,r.top)}
+function nm(s){return s.replace(/\{n\}/g,S.name||'___')}
+function nav(){var t=['❓ Questions','🔤 Words','🎮 Game'];$('nav').innerHTML=t.map(function(x,i){return '<button class="'+(S.tab==i?'on':'')+'" data-t="'+i+'">'+x+'</button>'}).join('')}
+function qView(){var q=Q[S.qi],h='<div class="bar"><i style="width:'+((S.qi+1)/Q.length*100)+'%"></i></div>';
+h+='<div class="card in"><div class="big">'+q[0]+'</div><div class="hint">Question '+(S.qi+1)+' of '+Q.length+'</div><div class="q">'+q[1]+'</div><div class="qa ar">'+q[2]+'</div>';
+if(S.show)h+='<div class="ans"><b>'+nm(q[3])+'</b><b class="ar">'+nm(q[4])+'</b></div>';
+h+='<div class="row"><button class="btn sky" data-a="say">🔊 Listen</button><button class="btn grape" data-a="show">'+(S.show?'🙈 Hide answer':'👀 Show answer')+'</button></div>';
+h+='<div class="row"><button class="btn ghost" data-a="prev">◀ Back</button><button class="btn mint" data-a="done">✓ I answered it!</button><button class="btn ghost" data-a="next">Next ▶</button></div></div>';
+h+='<p class="hint">Ask the question, let your child answer in his own words, then press “I answered it!” for a star.</p>';return h}
+function wView(){var h='<div class="chips">'+Object.keys(W).map(function(k){return '<button class="chip '+(S.cat==k?'on':'')+'" data-c="'+k+'">'+k+'</button>'}).join('')+'</div><div class="grid">';
+W[S.cat].forEach(function(w,i){h+='<button class="w" data-w="'+i+'"><div class="e">'+w[0]+'</div><div class="n">'+w[1]+'</div><div class="a ar">'+w[2]+'</div></button>'});return h+'</div><p class="hint">Tap a card to hear it.</p>'}
+function gNew(){var ks=Object.keys(W).filter(function(k){return k!='Opposites'&&k!='Actions'});var k=ks[Math.floor(Math.random()*ks.length)],a=W[k],c=a[Math.floor(Math.random()*a.length)],o=[c];var pool=a.slice();while(o.length<3&&pool.length>1){var p=pool[Math.floor(Math.random()*pool.length)];if(o.indexOf(p)<0)o.push(p);if(o.length<3&&pool.length<=o.length)break}
+var all=[].concat.apply([],ks.map(function(x){return W[x]}));while(o.length<3){var p2=all[Math.floor(Math.random()*all.length)];if(o.indexOf(p2)<0)o.push(p2)}
+o.sort(function(){return Math.random()-.5});S.g={c:c,o:o,done:0}}
+function gView(){if(!S.g)gNew();var g=S.g;var h='<div class="card in"><div class="big">'+g.c[0]+'</div><div class="q">What is this?</div><div class="qa ar">ده إيه؟</div><div class="opts">';
+g.o.forEach(function(x,i){h+='<button class="opt" data-o="'+i+'">'+x[1]+'</button>'});h+='</div>'+(g.done?'<div class="row"><button class="btn mint" data-a="gnext">Next one ▶</button></div>':'')+'</div><p class="hint">Pick the right word to win a star.</p>';return h}
+function draw(){nav();$('main').innerHTML=S.tab==0?qView():S.tab==1?wView():gView()}
+document.addEventListener('click',function(ev){var t=ev.target.closest('button');if(!t)return;var d=t.dataset;
+if(d.t!==undefined){S.tab=+d.t;draw();return}
+if(d.c){S.cat=d.c;draw();return}
+if(d.w!==undefined){var w=W[S.cat][+d.w];say(w[1]);t.classList.remove('wig');void t.offsetWidth;t.classList.add('wig');return}
+if(d.o!==undefined){var g=S.g;if(g.done)return;var x=g.o[+d.o];if(x===g.c){t.classList.add('ok');g.done=1;say(x[1]);win(ev);setTimeout(draw,700)}else{t.classList.add('no')}return}
+var a=d.a;if(!a)return;
+if(a=='say')say(Q[S.qi][1]);
+if(a=='show'){S.show=!S.show;draw()}
+if(a=='prev'){S.qi=(S.qi+Q.length-1)%Q.length;S.show=0;draw()}
+if(a=='next'){S.qi=(S.qi+1)%Q.length;S.show=0;draw()}
+if(a=='done'){win(ev);S.qi=(S.qi+1)%Q.length;S.show=0;setTimeout(draw,450)}
+if(a=='gnext'){gNew();draw()}
+});
+var inp=$('nm');inp.value=S.name;inp.addEventListener('input',function(){S.name=inp.value.trim();try{localStorage.setItem('ip_name',S.name)}catch(e){}if(S.tab==0)draw()});
+$('stars').textContent='⭐ '+S.stars;draw();
+</script></body></html>
